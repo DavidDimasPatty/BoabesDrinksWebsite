@@ -31,7 +31,9 @@ const Header =() =>{
         <a class="navbar-item" href="/">
           Home
         </a>
-  
+        <a class="navbar-item" href="/">
+          Promo
+        </a>
     
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
@@ -63,7 +65,7 @@ const Header =() =>{
               <strong>Sign up</strong>
             </a> */}
             <a class="button is-light" onClick={toggleLogin}>
-              Log in
+              Log In to Buy
             </a>
           </div>
         </div>
