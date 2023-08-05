@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+
+
+
 const Login = ({ onClose }) => {
 
   const [email,setEmail]=useState();
   const [password,setPassword]=useState(); 
+
 
   const login=async(e)=>{
       if(email &&password){
@@ -13,9 +17,10 @@ const Login = ({ onClose }) => {
             password:password
           }
         }).then((res)=>{
-          console.log(res);
           if(res.data.length!==0){
-            console.log(res);
+            console.log(res.data)
+             window.location.reload()
+             sessionStorage.setItem("token",res.data[0].name)
           }
         }).catch((e)=>console.log(e))
       }

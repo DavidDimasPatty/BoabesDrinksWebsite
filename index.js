@@ -20,7 +20,7 @@ app.get('/api/getAll',async function(req,res) {
 
 app.get('/api/login',async function(req,res) {
   await db.getUser(req.query.email,req.query.password).then(result=>{
-    res.send(result.data)
+    res.send(result)
   })
 })
 
