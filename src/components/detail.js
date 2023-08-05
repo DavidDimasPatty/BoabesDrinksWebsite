@@ -1,24 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../layout/header";
 import Footer from "../layout/footer";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 
-const detail=()=>{
+const Detail=()=>{
 
+    const [detailDrink,setDetailDrink]=useState([]);
     useEffect(()=>{
         detailBooze();
     },[])
 
-    var {nama}=useParams();
-
-    const detailBooze= async ()=>{
+    const {nama}=useParams();
+    console.log(nama)
+    const detailBooze= async (e)=>{
         await axios.get("http://localhost:5000/api/getBooze",{
         params:{
             nama:nama
         }}).then((res)=>{
-            console.log(res.data)
+            setDetailDrink(res.data['drinks'])
         }).catch((e)=>{
             console.log(e)
         })
@@ -28,19 +30,19 @@ const detail=()=>{
     return(
         <div>
         <Header/>
-        <div hidden>{index+1}</div>
+       { detailDrink.map((detailDrinks)=>(
         <div class="card is-4 px-4 py-2">
               <div class="card-image">
                 <figure class="image is-4by3">
-                  <img id="zoom" src={drinkss.strDrinkThumb} alt="Placeholder image"/>
+                  <img id="zoom" src={detailDrinks.strDrinkThumb} alt="Placeholder image"/>
                 </figure>
               </div>
               <div class="card-content">
                 <div class="media">
               
                   <div class="media-content">
-                    <p class="title is-4">{drinkss.strDrink}</p>
-                    <p class="subtitle is-6">{drinkss.strCategory}</p>
+                    <p class="title is-4">{detailDrinks.strDrink}</p>
+                    <p class="subtitle is-6">{detailDrinks.strCategory}</p>
                   </div>
                 </div>
 
@@ -49,13 +51,14 @@ const detail=()=>{
                   Phasellus nec iaculis mauris. <a>@bulmaio</a>.
                   <a href="#">#css</a> <a href="#">#responsive</a>
                   <br/>
-                  <time>{drinkss.dateModified}</time>
+                  <time>{detailDrinks.dateModified}</time>
                 </div>
               </div>
-            </div>
+            </div>))}
          <Footer/>
         </div>
+        
     )
 }
 
-export default detail
+export default Detail

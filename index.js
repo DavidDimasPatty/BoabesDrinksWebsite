@@ -18,6 +18,12 @@ app.get('/api/getAll',async function(req,res) {
   })
 })
 
+app.get('/api/getBooze',async function(req,res) {
+  await apiBooze.getDetail(req.query.nama).then(result=>{
+    res.send(result.data)
+  }).catch((e)=>console.log(e))
+})
+
 app.get('/api/login',async function(req,res) {
   await db.getUser(req.query.email,req.query.password).then(result=>{
     res.send(result)

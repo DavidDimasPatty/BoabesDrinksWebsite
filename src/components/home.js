@@ -4,11 +4,9 @@ import "bulma/css/bulma.min.css";
 import Header from "../layout/header"
 import Footer from "../layout/footer"
 import axios from "axios";
-import "./style/home.css"
 const Home = () => {
   
     const [drinks,setDrinks]=useState([]);
-    var i=0;
     const getAllBooze=async()=>{
       await axios.get("http://localhost:5000/api/getAll").then((result) => {
         console.log(result.data['drinks'])
@@ -37,7 +35,8 @@ const Home = () => {
                     (
                       <td class="px-3 py-2">
                       <div hidden>{index+1}</div>
-                  <div class="card is-4 px-4 py-2">
+                    <a href={`/detail/`+drinkss.strDrink}>  
+                    <div class="card is-4 px-4 py-2">
                         <div class="card-image">
                           <figure class="image is-4by3">
                             <img id="zoom" src={drinkss.strDrinkThumb} alt="Placeholder image"/>
@@ -61,6 +60,7 @@ const Home = () => {
                           </div>
                         </div>
                       </div>
+                      </a>
                       </td>):<tr></tr>
                 ))}
           </table>        

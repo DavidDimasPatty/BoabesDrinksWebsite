@@ -13,6 +13,18 @@ async function getAll() {
     return arr;
 }
 
+async function getDetail(nama){
+    var arr=[]
+    await axios.get(ApiBooze+nama).then((result)=>{
+        arr=result
+        }).catch((e)=>{
+        console.log(e)
+    })
+    return arr;
+}
+
 module.exports={
-    getAll:getAll
+    getAll:getAll,
+    getDetail:getDetail
+
 }
