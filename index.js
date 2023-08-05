@@ -5,15 +5,27 @@ const path=require('path');
 const apiBooze=require("./apiHandle")
 const app= express();
 const PORT= 5000
+const db=require("./db")
 
+db.connect()
 app.use(cors())
 app.use(bp.json())
 app.use(bp.urlencoded({extended:true}));
 
 app.get('/api/getAll',async function(req,res) {
-
   await apiBooze.getAll().then(result=>{
-   
+    res.send(result.data)
+  })
+})
+
+app.get('/api/login',async function(req,res) {
+  await db.getUser(req.query.email,req.query.password).then(result=>{
+    res.send(result.data)
+  })
+})
+
+app.get('/api/myOrder',async function(req,res) {
+  await db.getUserOrder(req.query.id).then(result=>{
     res.send(result.data)
   })
 })
