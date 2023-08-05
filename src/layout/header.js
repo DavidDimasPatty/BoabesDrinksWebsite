@@ -17,8 +17,7 @@ const Header =() =>{
     setShowLogin(!showLogin);
   };
     var token=sessionStorage.getItem("token")
-    
-    
+
  
     return(
     <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -82,27 +81,14 @@ const Header =() =>{
           <a class="navbar-item">
               {token}
           </a>
-          <div class="navbar-item">
-            <div class="buttons">
-              {/* <a class="button is-primary">
-                <strong>Sign up</strong>
-              </a> */}
-              <a class="button is-light">
-              <p> <BsFillCartFill/> My Cart</p> 
-              </a>
-            </div>
-          </div>
 
-          <div class="navbar-item">
-            <div class="buttons">
-              {/* <a class="button is-primary">
-                <strong>Sign up</strong>
-              </a> */}
-              <a class="button is-light" >
+          <a class="navbar-item">
+                <p> <BsFillCartFill/> My Cart</p> 
+          </a>
+
+          <a class="navbar-item">  
               <p> <BsClockHistory/> History</p>   
-              </a>
-            </div>
-          </div>
+          </a>
 
           <div class="navbar-item">
             <div class="buttons">
